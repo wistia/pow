@@ -27,9 +27,6 @@ defmodule Pow.Store.Base do
     quote do
       @behaviour unquote(__MODULE__)
 
-      # TODO: Remove by 1.1.0
-      @behaviour Pow.Store.Backend.Base
-
       @spec put(Config.t(), binary(), any()) :: :ok
       def put(config, key, value),
         do: put(config, backend_config(config), key, value)
@@ -59,9 +56,6 @@ defmodule Pow.Store.Base do
       defdelegate keys(config, backend_config), to: unquote(__MODULE__)
 
       defoverridable unquote(__MODULE__)
-
-      # TODO: Remove by 1.1.0
-      defoverridable Pow.Store.Backend.Base
     end
   end
 

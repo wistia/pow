@@ -96,10 +96,6 @@ defmodule Pow.Store.CredentialsCache do
     with {key, metadata} when is_binary(key) <- Base.get(config, backend_config, session_id),
          %{user: user}                       <- Base.get(config, backend_config, key) do
       {user, metadata}
-    else
-      # TODO: Remove by 1.1.0
-      {user, metadata} when is_map(user) -> {user, metadata}
-      :not_found -> :not_found
     end
   end
 

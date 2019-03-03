@@ -64,7 +64,6 @@ defmodule Pow.Plug.Session do
 
     store_config
     |> store.get(key)
-    |> convert_old_session_value()
     |> renew_stale_session(conn, config)
   end
 
@@ -121,10 +120,6 @@ defmodule Pow.Plug.Session do
 
     Conn.delete_session(conn, session_key)
   end
-
-  # TODO: Remove by 1.1.0
-  defp convert_old_session_value({user, timestamp}) when is_number(timestamp), do: {user, inserted_at: timestamp}
-  defp convert_old_session_value(any), do: any
 
   defp renew_stale_session(:not_found, conn, _config), do: {conn, nil}
   defp renew_stale_session({user, metadata}, conn, config) when is_list(metadata) do
