@@ -5,6 +5,11 @@
 * Changed minmum password length to 8 (OWASP/NIST recommendations)
 * Fixed bug where `Pow.Store.CredentialsCache` wasn't used due to how `Pow.Store.Base` macro worked
 * `Pow.Plug.Session` now stores a keyword list with metadata for the session rather than just the timestamp
+* `:telemetry` events are now dispatched for the following events:
+  * When session is created or renewed in `Pow.Plug.Session.create/3`
+  * When session is deleted in `Pow.Plug.Session.delete/2`
+  * When key value store is deleted, created or invalidated in `Pow.Store.Backend.EtsCache`
+  * When key value store is deleted, created or invalidated in `Pow.Store.Backend.MnesiaCache`
 
 ## v1.0.13 (2019-08-25)
 
